@@ -1,0 +1,220 @@
+{
+  "info": {
+    "name": "Spring Boot Beadando API - Lakatos Tamas",
+    "description": "API végpontok a féléves MVC és InMemory alapú beadandóhoz.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. POST Felhasználó létrehozása",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"hallgato1\",\n    \"email\": \"tamas.lakatos@egyetem.hu\",\n    \"age\": 22,\n    \"active\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "users"
+          ]
+        },
+        "description": "Létrehoz egy új felhasználót (User entitás)."
+      }
+    },
+    {
+      "name": "2. GET Felhasználók listázása",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "users"
+          ]
+        },
+        "description": "A rendszerben lévő felhasználók lekérése szűrés nélkül."
+      }
+    },
+    {
+      "name": "3. POST Címke (Tag) létrehozása",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Spring Boot\",\n    \"description\": \"Java alapú web keretrendszer\",\n    \"usageCount\": 0,\n    \"active\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tags",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tags"
+          ]
+        },
+        "description": "Létrehoz egy új címkét."
+      }
+    },
+    {
+      "name": "4. POST Poszt létrehozása",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Első Beadandó Poszt\",\n    \"content\": \"Ez a poszt bizonyítja, hogy működik az N:1 kapcsolat!\",\n    \"published\": true,\n    \"viewCount\": 0,\n    \"authorId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/posts",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "posts"
+          ]
+        },
+        "description": "Poszt létrehozása és hozzárendelése az 1-es azonosítójú felhasználóhoz."
+      }
+    },
+    {
+      "name": "5. PUT Poszt módosítása",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Módosított Első Beadandó Poszt\",\n    \"content\": \"Frissített tartalom beállítva.\",\n    \"published\": true,\n    \"viewCount\": 15,\n    \"authorId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/posts/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "posts",
+            "1"
+          ]
+        },
+        "description": "Létező poszt adatainak felülírása."
+      }
+    },
+    {
+      "name": "6. POST Címke hozzárendelése poszthoz",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/posts/1/tags/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "posts",
+            "1",
+            "tags",
+            "1"
+          ]
+        },
+        "description": "N:M kapcsolat kialakítása - összeköti az 1-es posztot az 1-es címkével."
+      }
+    },
+    {
+      "name": "7. GET Posztok szűrése címkével",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/posts?tag=Spring Boot",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "posts"
+          ],
+          "query": [
+            {
+              "key": "tag",
+              "value": "Spring Boot"
+            }
+          ]
+        },
+        "description": "Visszaadja a posztokat, ahol szerepel a megadott nevű címke."
+      }
+    },
+    {
+      "name": "8. DELETE Felhasználó törlése (Hibateszt)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/users/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "users",
+            "1"
+          ]
+        },
+        "description": "Törlési kísérlet. Mivel van posztja, 400 Bad Request-be fut, visszaadva a mi IllegalOperationException-ünket!"
+      }
+    }
+  ]
+}
